@@ -1,3 +1,4 @@
+'use client';
 import { cn } from "@/lib/utils";
 
 interface BorderBeamProps {
@@ -10,8 +11,8 @@ interface BorderBeamProps {
 
 export const BorderBeam = ({
   className,
-  size = 800, // Aumentado considerablemente para cubrir todo el header
-  duration = 2, // Reducido a 2 segundos para que sea más rápido
+  size = 800, 
+  duration = 2, 
   borderWidth = 0.6,
   delay = 0,
 }: BorderBeamProps) => {
