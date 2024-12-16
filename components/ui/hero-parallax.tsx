@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-// Definición de tipos
 interface Product {
   title: string;
   link: string;
@@ -45,26 +44,29 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
     springConfig
   );
 
-  // Calculamos los límites basados en el tamaño de las cards y el número de elementos
   const calculateDragLimit = (numItems: number) => {
+    if (typeof window === 'undefined') return 0;
+    
     const cardWidth = window.innerWidth < 768 ? 280 : 400;
     const gapWidth = window.innerWidth < 768 ? 32 : 48;
-    const totalWidth = cardWidth * numItems + gapWidth * (numItems - 1);
-    return totalWidth;
+    const containerWidth = window.innerWidth;
+    const totalWidth = (cardWidth * numItems) + (gapWidth * (numItems - 1));
+    const dragLimit = Math.max(0, totalWidth - containerWidth);
+    
+    // Ajuste para móviles: Limitar el arrastre en dispositivos pequeños
+    const extraMargin = window.innerWidth < 768 ? 200 : 100;
+    return -(dragLimit + extraMargin);
   };
 
   return (
-    <div
-      ref={ref}
-      className="h-[130vh] md:h-[200vh] py-5 md:py-10 overflow-hidden antialiased relative" 
-    >
+    <div ref={ref} className="h-[130vh] md:h-[200vh] py-5 md:py-10 overflow-hidden antialiased relative">
       <div className="max-w-[100vw] px-4 mx-auto">
         <motion.div
           className="flex flex-row-reverse mb-8 md:mb-20 cursor-grab active:cursor-grabbing"
           drag="x"
           dragConstraints={{
-            left: -calculateDragLimit(firstRow.length),
-            right: calculateDragLimit(firstRow.length),
+            left: calculateDragLimit(firstRow.length),
+            right: window?.innerWidth < 768 ? 200 : 100
           }}
           dragElastic={0.1}
         >
@@ -78,12 +80,13 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
             ))}
           </div>
         </motion.div>
+
         <motion.div
           className="flex flex-row mb-8 md:mb-20 cursor-grab active:cursor-grabbing"
           drag="x"
           dragConstraints={{
-            left: -calculateDragLimit(secondRow.length),
-            right: calculateDragLimit(secondRow.length),
+            left: calculateDragLimit(secondRow.length),
+            right: window?.innerWidth < 768 ? 200 : 100
           }}
           dragElastic={0.1}
         >
@@ -97,12 +100,13 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
             ))}
           </div>
         </motion.div>
+
         <motion.div
           className="flex flex-row-reverse cursor-grab active:cursor-grabbing"
           drag="x"
           dragConstraints={{
-            left: -calculateDragLimit(thirdRow.length),
-            right: calculateDragLimit(thirdRow.length),
+            left: calculateDragLimit(thirdRow.length),
+            right: window?.innerWidth < 768 ? 200 : 100
           }}
           dragElastic={0.1}
         >
