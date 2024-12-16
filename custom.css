@@ -1,0 +1,12 @@
+@keyframes border-beam-bottom {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(200%);
+    }
+  }
+  
+  .animate-border-beam-bottom {
+    animation: border-beam-bottom var(--duration) linear infinite;
+  }
