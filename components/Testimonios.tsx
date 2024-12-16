@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { TextHoverEffect } from "./ui/text-hover-effect";
 import { cn } from "@/lib/utils";

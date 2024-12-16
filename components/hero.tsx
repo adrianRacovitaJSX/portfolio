@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Spotlight } from "./ui/Spotlight";
 import AnimatedShinyText from "./ui/animated-shiny-text";
