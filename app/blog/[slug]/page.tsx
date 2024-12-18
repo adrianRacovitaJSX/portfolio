@@ -11,7 +11,6 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ShareButtons } from "@/components/ShareButtons";
 import { BlogSidebar } from "@/components/BlogSidebar";
-
 interface Params {
   params: {
     slug: string;
@@ -23,6 +22,12 @@ type Heading = {
   text: string;
   level: number;
 };
+
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
 
 function extractHeadings(content: string): Heading[] {
   const headingRegex = /^(#{1,3})\s+(.+)$/gm;
@@ -41,8 +46,7 @@ function extractHeadings(content: string): Heading[] {
 
   return headings;
 }
-
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -99,14 +103,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-export default async function PostPage({ params }: Params) {
+export default async function PostPage({ params }: Props) {
   const post = await getPostBySlug(params.slug);
   const allPosts = await getAllPosts();
 
   if (!post) {
     notFound();
   }
-
+  
   const headings = extractHeadings(post.content);
   const currentUrl = `https://aracovita.dev/blog/${params.slug}`;
 
