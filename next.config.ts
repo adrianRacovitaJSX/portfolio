@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
+import createMDX from '@next/mdx';
 
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     remotePatterns: [
       {
@@ -17,6 +20,12 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  experimental: {
+    mdxRs: true,
+  },
+  require: ['./scripts/generateSitemap.js'],
 };
 
-export default nextConfig;
+const withMDX = createMDX()
+
+export default withMDX(nextConfig);

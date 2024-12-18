@@ -188,6 +188,7 @@ export default {
   plugins: [
 	addVariablesForColors,
     require("tailwindcss-animate"),
+	require('@tailwindcss/typography'),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {

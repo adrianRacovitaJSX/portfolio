@@ -4,10 +4,18 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, Linkedin, Github, Check, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Github,
+  Check,
+  AlertCircle,
+} from "lucide-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 
 const Footer = () => {
   const { toast } = useToast();
@@ -18,6 +26,21 @@ const Footer = () => {
     company: "",
     message: "",
   });
+
+  const placeholders = [
+    "¿Cuál es tu correo para más novedades?",
+    "Suscríbete con tu email para actualizaciones.",
+    "Ingresa tu email y recibe mis noticias.",
+    "Pon tu correo para estar al tanto de todo.",
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +61,7 @@ const Footer = () => {
           description: (
             <div className="flex flex-col gap-1">
               <span className="flex items-center gap-2 font-semibold">
-                <Check className="h-4 w-4 text-green-500" /> 
+                <Check className="h-4 w-4 text-green-500" />
                 Mensaje enviado
               </span>
               <span>Gracias por contactar. Te responderé pronto.</span>
@@ -56,10 +79,13 @@ const Footer = () => {
         description: (
           <div className="flex flex-col gap-1">
             <span className="flex items-center gap-2 font-semibold">
-              <AlertCircle className="h-4 w-4" /> 
+              <AlertCircle className="h-4 w-4" />
               Error
             </span>
-            <span>Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.</span>
+            <span>
+              Hubo un problema al enviar tu mensaje. Por favor, intenta
+              nuevamente.
+            </span>
           </div>
         ),
         className: "md:mt-0 mt-14",
@@ -70,7 +96,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative min-h-[500px] w-screen overflow-hidden bg-white dark:bg-black">
+    <footer className="relative min-h-[500px] w-full bg-white dark:bg-black">
       <BackgroundGradientAnimation
         containerClassName="!h-full absolute inset-0"
         className="!h-full"
@@ -85,11 +111,19 @@ const Footer = () => {
       />
 
       <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-          <div className="grid gap-16 md:grid-cols-2">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 py-8 sm:py-16">
+          <div className="grid gap-8 sm:gap-16 md:grid-cols-2">
             {/* Información de Contacto */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="space-y-6 sm:space-y-8 w-full">
+              <div className="space-y-4 w-full">
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
+                  ¡Suscríbete a mi newsletter!
+                </h3>
+                <div className="w-full max-w-full">
+                <PlaceholdersAndVanishInput placeholders={placeholders} />
+                </div>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                 Conectemos
               </h3>
 
@@ -126,10 +160,9 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-
             {/* Formulario de Contacto */}
-            <div className="space-y-8" id="contacto">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex gap-2">
+            <div className="space-y-6 sm:space-y-8 w-full" id="contacto">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white flex flex-wrap gap-2">
                 Haz tu
                 <p className="dark:text-emerald-400 text-emerald-600">
                   proyecto
@@ -137,8 +170,8 @@ const Footer = () => {
                 realidad.
               </h3>
 
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <div className="grid gap-4 sm:grid-cols-2">
+              <form className="space-y-4 w-full" onSubmit={handleSubmit}>
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 w-full">
                   <Input
                     placeholder="Nombre *"
                     value={formData.name}
@@ -146,7 +179,7 @@ const Footer = () => {
                       setFormData((prev) => ({ ...prev, name: e.target.value }))
                     }
                     required
-                    className="bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                    className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                   <Input
                     placeholder="Email *"
@@ -159,7 +192,7 @@ const Footer = () => {
                       }))
                     }
                     required
-                    className="bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                    className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                 </div>
                 <Input
@@ -171,7 +204,7 @@ const Footer = () => {
                       company: e.target.value,
                     }))
                   }
-                  className="bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <Textarea
                   placeholder="Mensaje *"
@@ -183,7 +216,7 @@ const Footer = () => {
                     }))
                   }
                   required
-                  className="min-h-[120px] bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full max-w-full min-h-[120px] bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <Button
                   type="submit"
@@ -203,7 +236,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-gray-200 dark:border-white/10 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-8 sm:mt-12 border-t border-gray-200 dark:border-white/10 pt-4 sm:pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} aracovita.dev. Todos los derechos
             reservados.
           </div>
