@@ -11,23 +11,12 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ShareButtons } from "@/components/ShareButtons";
 import { BlogSidebar } from "@/components/BlogSidebar";
-interface Params {
-  params: {
-    slug: string;
-  };
-}
 
 type Heading = {
   id: string;
   text: string;
   level: number;
 };
-
-type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
 
 function extractHeadings(content: string): Heading[] {
   const headingRegex = /^(#{1,3})\s+(.+)$/gm;
@@ -46,7 +35,8 @@ function extractHeadings(content: string): Heading[] {
 
   return headings;
 }
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -72,13 +62,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: excerpt,
     authors: [{ name: author }],
     keywords,
-    metadataBase: new URL("https://aracovita.dev"),
+    metadataBase: new URL('https://aracovita.dev'),
     openGraph: {
       title: `${title} | Adrian Racovita`,
       description: excerpt,
-      type: "article",
+      type: 'article',
       url,
-      siteName: "Adrian Racovita",
+      siteName: 'Adrian Racovita',
       publishedTime: post.metadata.date,
       modifiedTime: lastModified,
       authors: [author],
@@ -92,7 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: `${title} | Adrian Racovita`,
       description: excerpt,
       images: [ogImage || image],
@@ -103,14 +93,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params }: any) {
   const post = await getPostBySlug(params.slug);
   const allPosts = await getAllPosts();
 
   if (!post) {
     notFound();
   }
-  
+
   const headings = extractHeadings(post.content);
   const currentUrl = `https://aracovita.dev/blog/${params.slug}`;
 
@@ -121,7 +111,7 @@ export default async function PostPage({ params }: Props) {
 
       <div className="min-h-screen">
         <div className="max-w-[90rem] mx-auto px-4">
-          {/* Grid responsive */}
+          {/* Grid de 3 columnas para el contenido */}
           <div className="grid grid-cols-1 xl:grid-cols-[280px_minmax(auto,_730px)_280px] gap-12 justify-center">
             {/* Sidebar izquierdo */}
             <div className="hidden xl:block pt-12 mb-24">
@@ -134,7 +124,7 @@ export default async function PostPage({ params }: Props) {
             </div>
 
             {/* Contenido principal */}
-            <article className="py-12 px-0 sm:px-4">
+            <article className="py-12">
               <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-xl overflow-hidden">
                 <Image
                   src={post.metadata.image}
@@ -169,7 +159,7 @@ export default async function PostPage({ params }: Props) {
                 </p>
               </header>
 
-              <div className="prose prose-zinc dark:prose-invert prose-emerald max-w-none prose-img:rounded-xl prose-pre:!p-0">
+              <div className="prose prose-zinc dark:prose-invert prose-emerald max-w-none">
                 <MDXRemote
                   source={post.content}
                   components={useMDXComponents({})}
@@ -183,7 +173,7 @@ export default async function PostPage({ params }: Props) {
               />
             </article>
 
-            {/* Sidebar derecho - oculto en móvil */}
+            {/* Sidebar derecho */}
             <div className="hidden xl:block pt-12 mb-24">
               <div className="sticky top-24">
                 <TableOfContents headings={headings} />
