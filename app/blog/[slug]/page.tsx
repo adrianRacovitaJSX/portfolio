@@ -12,6 +12,12 @@ import { ReadingProgress } from "@/components/ReadingProgress";
 import { ShareButtons } from "@/components/ShareButtons";
 import { BlogSidebar } from "@/components/BlogSidebar";
 
+interface Params {
+  params: {
+    slug: string;
+  };
+}
+
 type Heading = {
   id: string;
   text: string;
@@ -36,11 +42,7 @@ function extractHeadings(content: string): Heading[] {
   return headings;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -97,11 +99,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function PostPage({ params }: Params) {
   const post = await getPostBySlug(params.slug);
   const allPosts = await getAllPosts();
 
