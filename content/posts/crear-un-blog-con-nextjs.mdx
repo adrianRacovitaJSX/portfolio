@@ -1,0 +1,118 @@
+---
+title: 'Creación de un Blog Moderno con Next.js: Un Viaje de Desarrollo'
+date: '2024-12-18'
+excerpt: 'Descubre el proceso de creación de un blog moderno usando Next.js 15, TypeScript y MDX. Una exploración detallada de las decisiones técnicas y características implementadas.'
+image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
+author: 'Adrian Racovita'
+keywords: ['Next.js', 'TypeScript', 'MDX', 'Blog', 'Development', 'Frontend']
+category: 'Desarrollo Web'
+lastModified: '2024-12-18'
+---
+
+# Creación de un Blog Moderno con Next.js: Un Viaje de Desarrollo
+
+El desarrollo web moderno requiere soluciones que combinen rendimiento, experiencia de usuario y facilidad de mantenimiento. En este artículo, compartiré el proceso de creación del blog que estás leyendo ahora mismo, explorando las decisiones técnicas y las características implementadas.
+
+## La Base Tecnológica
+
+### Por qué Next.js 15
+
+La elección de Next.js 15 como framework base no fue casual. Sus características clave como:
+- Renderizado por servidor (SSR)
+- Generación estática incremental
+- Optimización automática de imágenes
+- Soporte nativo para TypeScript
+
+Lo convierten en la herramienta perfecta para un blog moderno.
+
+### MDX: La Fusión Perfecta
+
+MDX nos permite combinar la simplicitud de Markdown con la potencia de React. Esto significa que podemos:
+- Escribir contenido en formato Markdown
+- Insertar componentes React interactivos
+- Mantener una estructura consistente
+- Personalizar la presentación de cada elemento
+
+## Características Implementadas
+
+### Navegación Intuitiva
+
+<CodeBlock 
+  language="tsx"
+  filename="components/TableOfContents.tsx"
+  highlightLines={[2, 5, 6]}
+  code={`
+interface TableOfContentsProps {
+  headings: Heading[];
+}
+
+export const TableOfContents = ({ headings }) => {
+  // Implementación de la navegación lateral
+  return (
+    <nav className="sticky top-24">
+      {/* Contenido */}
+    </nav>
+  );
+};`}
+/>
+
+La navegación lateral proporciona un acceso rápido a las secciones del artículo, mejorando significativamente la experiencia de lectura.
+
+### Optimización para SEO
+
+Cada post incluye metadatos completos para mejorar el SEO:
+- Open Graph tags para compartir en redes sociales
+- Meta descripciones optimizadas
+- URLs semánticas
+- Títulos y encabezados estructurados
+
+### Diseño Responsivo
+
+El blog se adapta perfectamente a cualquier dispositivo:
+- Layout fluido que se ajusta a diferentes tamaños de pantalla
+- Sidebar colapsable en dispositivos móviles
+- Tipografía responsiva
+- Imágenes optimizadas
+
+### Newsletter y Compartir
+
+La integración con ConvertKit permite:
+- Suscripción al newsletter
+- Gestión automatizada de suscriptores
+- Animaciones suaves en el formulario
+- Feedback inmediato al usuario
+
+## Desafíos y Soluciones
+
+### Gestión del Estado
+
+Uno de los mayores desafíos fue manejar el estado de la navegación y el tema (oscuro/claro). La solución:
+- Uso de React Context para el tema
+- Estado local para elementos interactivos
+- Preservación de preferencias del usuario
+
+### Optimización de Rendimiento
+
+Para mantener el rendimiento óptimo:
+- Implementación de carga lazy de imágenes
+- Optimización de fuentes
+- Minimización de JavaScript
+- Cacheo eficiente
+
+## Próximos Pasos
+
+El desarrollo no se detiene aquí. Algunas mejoras planificadas incluyen:
+- Búsqueda integrada
+- Filtrado por categorías
+- Sistema de comentarios
+- Más interacción con los lectores
+
+## Conclusión
+
+La creación de este blog ha sido un viaje de aprendizaje y optimización continua. La combinación de tecnologías modernas nos permite ofrecer una experiencia de lectura excepcional mientras mantenemos un código limpio y mantenible.
+
+Como desarrollador, creo firmemente en compartir conocimiento y experiencias. Este blog es mi contribución a la comunidad de desarrollo, y espero que inspire a otros a crear y compartir.
+
+¿Tienes preguntas sobre la implementación o sugerencias para futuras mejoras? No dudes en contactarme o dejar tus comentarios.
+
+*Este artículo será actualizado periódicamente con nuevas mejoras y características implementadas.*
