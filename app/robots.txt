@@ -1,3 +1,17 @@
+# Allow all robots complete access
 User-agent: *
 Allow: /
+Allow: /blog/
+Allow: /blog/*
+
+# Specify directories/files that shouldn't be crawled
+Disallow: /api/
+Disallow: /_next/
+Disallow: /*/_next/
+Disallow: /*.json$
+
+# Add sitemap location
 Sitemap: https://aracovita.dev/sitemap.xml
+
+# Crawl-delay for better performance (optional)
+Crawl-delay: 1

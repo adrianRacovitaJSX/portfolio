@@ -1,0 +1,490 @@
+---
+title: 'Cómo Crear una API REST con Next.js y TypeScript: Guía Completa'
+date: '2024-12-18'
+excerpt: 'Aprende a construir una API REST robusta y tipada usando Next.js y TypeScript. Desde configuración básica hasta patrones avanzados y mejores prácticas.'
+image: '/crearApi.png'
+author: 'Adrian Racovita'
+keywords: ['Next.js', 'TypeScript', 'API REST', 'Backend', 'Development', 'API Routes']
+category: 'Desarrollo Web'
+lastModified: '2024-12-18'
+---
+
+# Cómo Crear una API REST con Next.js y TypeScript
+
+Next.js no es solo un framework para frontend; su capacidad para crear APIs robustas lo convierte en una herramienta full-stack poderosa. En esta guía, exploraremos cómo crear una API REST completa utilizando Next.js y TypeScript.
+
+## Configuración Inicial
+
+Primero, necesitamos configurar nuestro proyecto. Si ya tienes un proyecto Next.js, puedes saltar este paso.
+
+<CodeBlock 
+  language="bash"
+  filename="terminal"
+  code={`npx create-next-app@latest my-api-project
+cd my-api-project`}
+/>
+
+Este comando inicializa un nuevo proyecto Next.js con las últimas características. Durante la instalación, asegúrate de seleccionar TypeScript y otras características que necesites como Tailwind CSS.
+
+### Estructura de Carpetas
+
+<CodeBlock 
+  language="bash"
+  filename="project-structure"
+  code={`app/
+├── api/
+│   ├── users/
+│   │   └── route.ts
+│   └── posts/
+│       └── route.ts
+├── types/
+│   └── api.ts
+└── lib/
+    └── db.ts`}
+/>
+
+Esta estructura sigue las mejores prácticas de Next.js 14:
+- La carpeta `api/` contendrá todas nuestras rutas de API
+- `types/` alojará nuestras interfaces y tipos de TypeScript
+- `lib/` guardará utilidades y configuraciones compartidas
+
+### Definiendo los Tipos
+
+<CodeBlock 
+  language="typescript"
+  filename="types/api.ts"
+  highlightLines={[1, 2, 3, 4]}
+  code={`export interface User {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+}
+
+export type UserCreate = Omit<User, 'id' | 'createdAt'>;
+export type UserUpdate = Partial<UserCreate>;`}
+/>
+
+En este bloque definimos:
+- Una interfaz `User` con los campos básicos que necesitamos
+- `UserCreate` que omite los campos que se generan automáticamente
+- `UserUpdate` que hace todos los campos opcionales para actualizaciones parciales
+
+Esta estructura de tipos nos ayuda a mantener la consistencia y evitar errores en tiempo de desarrollo.
+
+### Implementando los Endpoints
+
+<CodeBlock 
+  language="typescript"
+  filename="app/api/users/route.ts"
+  code={`import { NextResponse } from 'next/server';
+import type { User, UserCreate } from '@/types/api';
+
+// GET /api/users
+export async function GET() {
+  try {
+    // Simular obtención de usuarios
+    const users: User[] = [
+      { id: 1, name: 'John Doe', email: 'john@example.com', createdAt: new Date() }
+    ];
+    
+    return NextResponse.json(users);
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error fetching users' },
+      { status: 500 }
+    );
+  }
+}
+
+// POST /api/users
+export async function POST(request: Request) {
+  try {
+    const body: UserCreate = await request.json();
+    
+    // Validación básica
+    if (!body.name || !body.email) {
+      return NextResponse.json(
+        { error: 'Name and email are required' },
+        { status: 400 }
+      );
+    }
+    
+    // Simular creación de usuario
+    const newUser: User = {
+      id: Math.floor(Math.random() * 1000),
+      ...body,
+      createdAt: new Date()
+    };
+    
+    return NextResponse.json(newUser, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error creating user' },
+      { status: 500 }
+    );
+  }
+}`}
+/>
+
+Analicemos este endpoint en detalle:
+
+1. **GET /api/users**:
+   - Implementa la obtención de usuarios
+   - Usa `NextResponse.json()` para enviar respuestas tipadas
+   - Incluye manejo de errores básico
+
+2. **POST /api/users**:
+   - Recibe y valida datos del usuario
+   - Implementa validación básica de campos requeridos
+   - Genera un ID aleatorio (en producción usarías una base de datos)
+   - Devuelve el usuario creado con estado 201
+
+### Manejo de Errores
+
+<CodeBlock 
+  language="typescript"
+  filename="lib/errors.ts"
+  code={`export class APIError extends Error {
+  constructor(
+    public statusCode: number,
+    message: string
+  ) {
+    super(message);
+    this.name = 'APIError';
+  }
+}
+
+export function handleAPIError(error: unknown) {
+  if (error instanceof APIError) {
+    return NextResponse.json(
+      { error: error.message },
+      { status: error.statusCode }
+    );
+  }
+  
+  console.error('Unexpected error:', error);
+  return NextResponse.json(
+    { error: 'Internal server error' },
+    { status: 500 }
+  );
+}`}
+/>
+
+Este sistema de manejo de errores nos proporciona:
+- Una clase personalizada `APIError` para errores esperados
+- Una función helper `handleAPIError` que:
+  - Maneja errores conocidos de forma específica
+  - Proporciona una respuesta genérica para errores inesperados
+  - Mantiene logs de errores para debugging
+
+### Middleware de Autenticación
+
+<CodeBlock 
+  language="typescript"
+  filename="middleware.ts"
+  code={`import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const authHeader = request.headers.get('authorization');
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+  
+  // Validar token aquí
+  
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: '/api/:path*'
+}`}
+/>
+
+Este middleware:
+- Se ejecuta antes de cada petición a la API
+- Verifica la presencia y formato del token de autenticación
+- Puede extenderse para validar tokens JWT
+- Usa el matcher para aplicarse solo a rutas de API
+
+## Testing con Jest
+
+El testing es crucial para mantener la calidad de nuestra API. Vamos a configurar y escribir tests completos usando Jest.
+
+### Configuración Inicial de Jest
+
+Primero, instalamos las dependencias necesarias:
+
+<CodeBlock 
+  language="bash"
+  filename="terminal"
+  code={`npm install --save-dev jest @types/jest ts-jest node-mocks-http @testing-library/jest-dom jest-environment-node`}
+/>
+
+Configuramos Jest en nuestro proyecto:
+
+<CodeBlock 
+  language="typescript"
+  filename="jest.config.ts"
+  code={`import type { Config } from 'jest';
+import nextJest from 'next/jest';
+
+const createJestConfig = nextJest({
+  dir: './',
+});
+
+const config: Config = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  testEnvironment: 'jest-environment-node',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+  },
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'app/api/**/*.ts',
+    '!**/*.d.ts',
+    '!**/node_modules/**',
+  ],
+};
+
+export default createJestConfig(config);`}
+/>
+
+Creamos el archivo de setup para Jest:
+
+<CodeBlock 
+  language="typescript"
+  filename="jest.setup.ts"
+  code={`import '@testing-library/jest-dom';
+
+// Configuración global para tests
+global.console = {
+  ...console,
+  error: jest.fn(),
+  warn: jest.fn(),
+  log: jest.fn(),
+};`}
+/>
+
+### Tests Completos de la API
+
+<CodeBlock 
+  language="typescript"
+  filename="__tests__/api/users.test.ts"
+  code={`import { createMocks } from 'node-mocks-http';
+import { GET, POST } from '@/app/api/users/route';
+import type { User, UserCreate } from '@/types/api';
+
+describe('Users API Endpoints', () => {
+  describe('GET /api/users', () => {
+    it('should return 200 and users list', async () => {
+      const { req } = createMocks({
+        method: 'GET',
+      });
+
+      const response = await GET(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(Array.isArray(data)).toBe(true);
+      expect(data.length).toBeGreaterThan(0);
+      
+      // Verificar estructura de usuario
+      const user = data[0];
+      expect(user).toHaveProperty('id');
+      expect(user).toHaveProperty('name');
+      expect(user).toHaveProperty('email');
+      expect(user).toHaveProperty('createdAt');
+    });
+  });
+
+  describe('POST /api/users', () => {
+    const validUser: UserCreate = {
+      name: 'Test User',
+      email: 'test@example.com',
+    };
+
+    it('should create a new user with valid data', async () => {
+      const { req } = createMocks({
+        method: 'POST',
+        body: validUser,
+      });
+
+      const response = await POST(req);
+      const data: User = await response.json();
+
+      expect(response.status).toBe(201);
+      expect(data.name).toBe(validUser.name);
+      expect(data.email).toBe(validUser.email);
+      expect(data.id).toBeDefined();
+      expect(new Date(data.createdAt)).toBeInstanceOf(Date);
+    });
+
+    it('should return 400 with invalid data', async () => {
+      const { req } = createMocks({
+        method: 'POST',
+        body: { name: 'Invalid User' }, // Missing email
+      });
+
+      const response = await POST(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(400);
+      expect(data).toHaveProperty('error');
+    });
+
+    it('should handle server errors gracefully', async () => {
+      const { req } = createMocks({
+        method: 'POST',
+        body: null, // Esto causará un error al hacer JSON.parse
+      });
+
+      const response = await POST(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(500);
+      expect(data).toHaveProperty('error');
+    });
+  });
+});`}
+/>
+
+### Tests para el Middleware de Autenticación
+
+<CodeBlock 
+  language="typescript"
+  filename="__tests__/middleware.test.ts"
+  code={`import { NextRequest } from 'next/server';
+import { middleware } from '@/middleware';
+
+describe('Authentication Middleware', () => {
+  it('should allow requests with valid bearer token', async () => {
+    const req = new NextRequest(new Request('http://localhost/api/users'), {
+      headers: {
+        authorization: 'Bearer valid-token',
+      },
+    });
+
+    const response = await middleware(req);
+    expect(response).toBeDefined();
+    expect(response?.status).not.toBe(401);
+  });
+
+  it('should block requests without auth header', async () => {
+    const req = new NextRequest(new Request('http://localhost/api/users'));
+
+    const response = await middleware(req);
+    expect(response?.status).toBe(401);
+
+    const data = await response?.json();
+    expect(data.error).toBe('Unauthorized');
+  });
+
+  it('should block requests with invalid auth format', async () => {
+    const req = new NextRequest(new Request('http://localhost/api/users'), {
+      headers: {
+        authorization: 'Invalid-Format',
+      },
+    });
+
+    const response = await middleware(req);
+    expect(response?.status).toBe(401);
+  });
+});`}
+/>
+
+### Scripts de NPM para Testing
+
+Añade estos scripts a tu package.json:
+
+<CodeBlock 
+  language="json"
+  filename="package.json"
+  code={`{
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  }
+}`}
+/>
+
+Estos scripts te permiten:
+- `npm test`: Ejecutar todos los tests una vez
+- `npm run test:watch`: Ejecutar tests en modo watch
+- `npm run test:coverage`: Generar informe de cobertura
+
+### Buenas Prácticas de Testing
+
+1. **Estructura de Tests**
+   - Usa describe para agrupar tests relacionados
+   - Nombres claros y descriptivos para los tests
+   - Un assert por test cuando sea posible
+
+2. **Cobertura de Casos**
+   - Tests para casos exitosos
+   - Tests para casos de error
+   - Tests para casos límite
+   - Validación de tipos y estructuras
+
+3. **Mocking**
+   - Mock de servicios externos
+   - Mock de base de datos
+   - Mock de utilidades como Date
+
+4. **Mantenimiento**
+   - Tests deben ser independientes
+   - Evita dependencias entre tests
+   - Limpia datos después de cada test
+
+Este enfoque de testing nos asegura:
+- Detección temprana de errores
+- Documentación viva del código
+- Confianza en los cambios
+- Facilidad de mantenimiento
+
+Los tests son una parte crucial del desarrollo de APIs y deberían ejecutarse antes de cada deploy.
+
+## Mejores Prácticas
+
+1. **Versionado de API**
+   - Considera añadir versiones a tus rutas (ejemplo: /api/v1/users)
+   - Documenta los cambios entre versiones
+
+2. **Rate Limiting**
+   - Implementa límites de velocidad para prevenir abusos
+   - Usa headers para informar límites y uso
+
+3. **Documentación**
+   - Utiliza OpenAPI/Swagger para documentar tu API
+   - Proporciona ejemplos de uso
+
+4. **Caché**
+   - Implementa cache-control headers
+   - Usa Edge Caching cuando sea posible
+
+## Despliegue y Monitorización
+
+Al desplegar tu API, considera:
+
+1. **Variables de Entorno**
+   - Usa .env.local para desarrollo
+   - Configura variables en tu plataforma de despliegue
+
+2. **Monitorización**
+   - Implementa logging
+   - Configura alertas para errores
+   - Monitoriza tiempos de respuesta
+
+## Conclusión
+
+Crear una API REST con Next.js y TypeScript nos permite aprovechar el tipado estático y las características modernas de Next.js para construir APIs robustas y mantenibles. 
+
+¿Tienes preguntas sobre la implementación o sugerencias? ¡No dudes en contactarme!
+
+*Este artículo se actualizará con nuevas mejores prácticas y características de Next.js.*
