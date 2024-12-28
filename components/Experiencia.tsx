@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { TextHoverEffect } from "./ui/text-hover-effect";
 import Image from "next/image";
@@ -157,11 +157,12 @@ const Experiencia = () => {
               </a>
             </p>
             <p className="mb-8 text-sm md:text-md">
-              En iempresa, desarrollo soluciones web a medida, traduciendo las
-              necesidades específicas del cliente en productos funcionales. Mi
-              enfoque combina experiencia técnica con comunicación efectiva para
-              asegurar que cada proyecto cumpla y supere las expectativas del
-              cliente.
+              Como desarrollador full-stack autónomo, desarrollo aplicaciones web
+              end-to-end utilizando las últimas tecnologías del mercado. Mi
+              enfoque integral, desde las interfaces de usuario hasta las
+              infraestructuras del servidor, asegura la entrega de soluciones
+              escalables y de alta calidad que impulsan el éxito de cada
+              proyecto.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -220,7 +221,7 @@ const Experiencia = () => {
   ];
 
   return (
-    <div className="dark:bg-black bg-white md:-mt-56 -mt-20" id="experiencia">
+    <div className="dark:bg-black bg-white md:-mt-96 -mt-36" id="experiencia">
       <div className="h-[12rem] flex items-center justify-center relative mb-10 md:mb-0">
         <h2 className="absolute text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100 z-10">
           EXPERIENCIA

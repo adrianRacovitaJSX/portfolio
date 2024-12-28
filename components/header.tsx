@@ -9,11 +9,11 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Conóceme", href: "#conoceme" },
-    { label: "Proyectos", href: "#proyectos" },
-    { label: "Experiencia", href: "#experiencia" },
-    { label: "Testimonios", href: "#testimonios" },
-    { label: "Blog", href: "/blog" },
+    { label: "Conóceme", href: "https://aracovita.dev/#conoceme" },
+    { label: "Proyectos", href: "https://aracovita.dev/#proyectos" },
+    { label: "Experiencia", href: "https://aracovita.dev/#experiencia" },
+    { label: "Testimonios", href: "https://aracovita.dev/#testimonios" },
+    { label: "Blog", href: "https://aracovita.dev/blog" },
   ];
 
   return (
