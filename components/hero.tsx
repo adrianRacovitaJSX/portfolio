@@ -58,7 +58,10 @@ const Hero = () => {
             </button>
             </a>
             <button className="flex gap-1 antialiased justify-center items-center h-auto px-7 py-2 bg-white text-black border-black border text-sm rounded-md font-semibold hover:bg-zinc/[0.8] hover:shadow-lg">
-            <FileCode2 size={17} /> Currículum
+            <FileCode2 size={17} /> 
+            <a href="/CV.pdf" target="_blank">
+            Currículum
+            </a>
             </button>
           </div>
         </div>
