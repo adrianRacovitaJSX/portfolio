@@ -11,6 +11,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ShareButtons } from "@/components/ShareButtons";
 import { BlogSidebar } from "@/components/BlogSidebar";
+import { Comments } from "@/components/Comments";
 
 type Heading = {
   id: string;
@@ -62,13 +63,13 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     description: excerpt,
     authors: [{ name: author }],
     keywords,
-    metadataBase: new URL('https://aracovita.dev'),
+    metadataBase: new URL("https://aracovita.dev"),
     openGraph: {
       title: `${title} | Adrian Racovita`,
       description: excerpt,
-      type: 'article',
+      type: "article",
       url,
-      siteName: 'Adrian Racovita',
+      siteName: "Adrian Racovita",
       publishedTime: post.metadata.date,
       modifiedTime: lastModified,
       authors: [author],
@@ -82,7 +83,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: `${title} | Adrian Racovita`,
       description: excerpt,
       images: [ogImage || image],

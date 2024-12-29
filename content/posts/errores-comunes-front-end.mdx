@@ -1,0 +1,164 @@
+---
+title: Errores que cometí al empezar como desarrollador front-end (y cómo evitarlos)
+date: '2024-12-27'
+excerpt: Descubre los errores más comunes que muchos desarrolladores front-end cometemos al iniciar y cómo aprender de ellos puede acelerar tu crecimiento profesional.
+image: "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+author: Adrian Racovita
+keywords: 
+  - Frontend
+  - Errores
+  - Aprendizaje
+  - CSS
+  - HTML
+  - Desarrollo web
+category: Desarrollo Frontend
+lastModified: '2024-12-27'
+---
+
+# Errores que cometí al empezar como desarrollador front-end
+
+Comenzar en el mundo del desarrollo front-end puede ser emocionante y desafiante a partes iguales. Es un camino lleno de aprendizajes, pero también de errores que, con el tiempo, se convierten en lecciones valiosas. En este artículo, compartiré algunos de los errores más comunes que cometí al iniciar mi carrera y cómo tú puedes evitarlos para avanzar más rápido. 🚀
+
+## 1. HTML y CSS Fundamentales
+
+**El Problema:**
+Al principio, me lancé a aprender frameworks como React sin entender bien cómo funcionaban los fundamentos del DOM o las propiedades básicas de CSS. Esto hizo que resolver problemas sencillos se volviera mucho más complicado.
+
+**La Solución:**
+Domina HTML y CSS antes de pasar a frameworks. Entender cómo funcionan propiedades como `position`, `flexbox` o `grid` te dará una base sólida.
+
+**Ejemplo:**
+<CodeBlock 
+  key="css-position-1"
+  language="css"
+  filename="styles.css"
+  highlightLines={[4]}
+  code={`
+.container {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+}`}
+/>
+
+## 2. Accesibilidad Web
+
+**El Problema:**
+Creaba componentes visualmente atractivos pero sin pensar en usuarios con discapacidades. Por ejemplo, botones sin etiquetas accesibles o elementos interactivos sin roles definidos.
+
+**La Solución:**
+La accesibilidad no es un extra, es una necesidad. Usa herramientas como Lighthouse para auditar tus proyectos.
+
+**Ejemplo:**
+<CodeBlock 
+  key="accessibility-1"
+  language="html"
+  filename="button.html"
+  highlightLines={[2]}
+  code={`
+<button aria-label="Cerrar modal">
+  <svg>...</svg>
+</button>`}
+/>
+
+## 3. Optimización de Recursos
+
+**El Problema:**
+Subía imágenes enormes directamente al proyecto, lo que ralentizaba el tiempo de carga significativamente.
+
+**La Solución:**
+Usa formatos modernos como WebP y herramientas de compresión. Además, implementa carga diferida (lazy loading).
+
+**Ejemplo:**
+<CodeBlock 
+  key="image-optimization-1"
+  language="html"
+  filename="image.html"
+  highlightLines={[2]}
+  code={`
+<img src="imagen.webp" 
+     alt="Descripción de la imagen" 
+     loading="lazy" 
+/>`}
+/>
+
+## 4. Diseño Responsive
+
+**El Problema:**
+Diseñaba primero para escritorio y luego intentaba adaptar para móvil, duplicando el trabajo innecesariamente.
+
+**La Solución:**
+Adopta un enfoque mobile-first y usa unidades relativas (em, rem, %) en lugar de píxeles fijos.
+
+**Ejemplo:**
+<CodeBlock 
+  key="responsive-1"
+  language="css"
+  filename="responsive.css"
+  highlightLines={[4, 5]}
+  code={`
+body {
+  font-size: 100%; /* Base */
+}
+
+h1 {
+  font-size: 2rem; /* Escalable */
+}`}
+/>
+
+## 5. Mantenibilidad del Código
+
+**El Problema:**
+Escribía CSS desorganizado sin pensar en cómo sería mantenerlo en el futuro.
+
+**La Solución:**
+Implementa metodologías como BEM para mantener tu código organizado y escalable.
+
+**Ejemplo:**
+<CodeBlock 
+  key="bem-1"
+  language="css"
+  filename="styles.css"
+  highlightLines={[2, 3]}
+  code={`
+.button {
+  background-color: blue;
+}
+
+.button--primary {
+  background-color: green;
+}`}
+/>
+
+## 6. Control de Versiones
+
+**El Problema:**
+Evitaba usar Git y guardaba versiones manualmente, lo que llevaba a problemas de organización.
+
+**La Solución:**
+Aprende los comandos básicos de Git desde el principio y úsalo en todos tus proyectos.
+
+**Ejemplo:**
+<CodeBlock 
+  key="git-1"
+  language="bash"
+  filename="git-commands.sh"
+  highlightLines={[3, 5]}
+  code={`
+git init
+git add .
+git commit -m "Inicializando proyecto"
+git branch feature/nueva-funcionalidad
+git checkout feature/nueva-funcionalidad`}
+/>
+
+## Conclusión
+
+Todos cometemos errores al empezar, pero la clave está en aprender de ellos y seguir mejorando. Espero que estas experiencias te ayuden a evitar algunos tropiezos comunes y aceleren tu desarrollo profesional.
+
+💡 ¿Y tú? ¿Qué errores cometiste al empezar? Comparte tu experiencia en los comentarios y ayuda a otros desarrolladores a crecer.

@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+
+const POSTS_PER_PAGE = 5;
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString("es-ES", {
@@ -16,16 +18,31 @@ function formatDate(date: string) {
 
 export const metadata: Metadata = {
   title: "Blog | Adrian Racovita",
-  description: "Explorando el desarrollo web moderno, compartiendo conocimientos y experiencias en React, Next.js y más.",
+  description:
+    "Explorando el desarrollo web moderno, compartiendo conocimientos y experiencias en React, Next.js y más.",
   openGraph: {
     title: "Blog | Adrian Racovita",
-    description: "Explorando el desarrollo web moderno, compartiendo conocimientos y experiencias en React, Next.js y más.",
+    description:
+      "Explorando el desarrollo web moderno, compartiendo conocimientos y experiencias en React, Next.js y más.",
     type: "website",
   },
 };
 
-export default async function BlogPage() {
-  const posts = await getAllPosts();
+interface Props {
+  searchParams: { page?: string };
+}
+
+export default async function BlogPage({ searchParams }: Props) {
+  const currentPage = Number(searchParams.page) || 1;
+  const allPosts = await getAllPosts();
+
+  const totalPosts = allPosts.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+
+  const posts = allPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
 
   return (
     <>
@@ -36,8 +53,9 @@ export default async function BlogPage() {
             Blog y Recursos
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            Explorando el desarrollo web moderno. Aquí comparto tutoriales, guías y experiencias
-            sobre React, Next.js, y las últimas tendencias en desarrollo frontend.
+            Explorando el desarrollo web moderno. Aquí comparto tutoriales,
+            guías y experiencias sobre React, Next.js, y las últimas tendencias
+            en desarrollo frontend.
           </p>
         </div>
 
@@ -68,14 +86,14 @@ export default async function BlogPage() {
                     <Clock className="w-4 h-4" />
                     {post.metadata.readingTime}
                   </span>
-                  <time 
+                  <time
                     dateTime={post.metadata.date}
                     className="text-zinc-600 dark:text-zinc-400"
                   >
                     {formatDate(post.metadata.date)}
                   </time>
                 </div>
-                
+
                 <Link href={`/blog/${post.slug}`} className="block group">
                   <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition">
                     {post.metadata.title}
@@ -95,11 +113,56 @@ export default async function BlogPage() {
           {posts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-zinc-600 dark:text-zinc-400">
-                Pronto publicaré contenido interesante. ¡Vuelve pronto!
+                No se encontraron posts en esta página.
               </p>
             </div>
           )}
         </div>
+
+        {/* Paginación */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center items-center gap-4">
+            <Link
+              href={`/blog?page=${currentPage - 1}`}
+              className={`p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors ${
+                currentPage <= 1 ? "pointer-events-none opacity-50" : ""
+              }`}
+              aria-label="Página anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Link>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (pageNum) => (
+                  <Link
+                    key={pageNum}
+                    href={`/blog?page=${pageNum}`}
+                    className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors ${
+                      currentPage === pageNum
+                        ? "bg-emerald-500 text-white"
+                        : "hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    }`}
+                  >
+                    {pageNum}
+                  </Link>
+                )
+              )}
+            </div>
+
+            <Link
+              href={`/blog?page=${currentPage + 1}`}
+              className={`p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors ${
+                currentPage >= totalPages
+                  ? "pointer-events-none opacity-50"
+                  : ""
+              }`}
+              aria-label="Página siguiente"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        )}
       </div>
       <Footer />
     </>

@@ -10,6 +10,61 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+.giscus {
+  width: 100%;
+  border-radius: 1rem;
+  min-height: 150px;
+  overflow: hidden; /* Cambiado de visible a hidden para evitar desbordes */
+  display: flex; /* Para asegurar un comportamiento consistente */
+  flex-direction: column; /* Mantiene el contenido alineado */
+  align-items: stretch;
+}
+
+#giscus-comments {
+  position: relative;
+  width: 100%;
+  min-height: 300px; /* Define un mínimo para evitar cortes */
+  height: auto; /* Permitir que crezca dinámicamente */
+  overflow: visible; /* Importante para mostrar todo el contenido */
+}
+
+.giscus-frame {
+  width: 100%;
+  height: auto !important; /* Permite que el iframe ajuste su altura */
+  border: none;
+  display: block;
+}
+
+
+[data-theme='dark'] .giscus {
+  --color-prettylights-syntax-comment: #8b949e;
+  --color-prettylights-syntax-constant: #79c0ff;
+  --color-prettylights-syntax-entity: #d2a8ff;
+  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+  --color-prettylights-syntax-string: #a5d6ff;
+  --color-prettylights-syntax-variable: #ffa657;
+  --color-btn-text: #c9d1d9;
+  --color-btn-bg: #21262d;
+  --color-btn-border: rgba(240,246,252,0.1);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #30363d;
+  --color-btn-hover-border: #8b949e;
+  --color-btn-active-bg: #282e33;
+  --color-btn-active-border: #6e7681;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #238636;
+  --color-btn-primary-border: rgba(240,246,252,0.1);
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #2ea043;
+  --color-btn-primary-hover-border: rgba(240,246,252,0.1);
+  --color-btn-primary-selected-bg: #238636;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgba(255,255,255,0.5);
+  --color-btn-primary-disabled-bg: rgba(35,134,54,0.6);
+  --color-btn-primary-disabled-border: rgba(240,246,252,0.1);
+}
 
 @layer base {
   :root {

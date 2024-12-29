@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const siteUrl = 'https://aracovita.dev';  
+const siteUrl = 'https://aracovita.dev';
+const POSTS_PER_PAGE = 5;
 
 // Función para generar el sitemap
 async function generateSitemap() {
@@ -13,25 +14,46 @@ async function generateSitemap() {
     .filter((filename) => filename.endsWith('.mdx'))
     .map((filename) => filename.replace('.mdx', ''));
 
-  // Genera las URLs del sitemap
+  // Calcula el número total de páginas
+  const totalPages = Math.ceil(slugs.length / POSTS_PER_PAGE);
+
+  // Genera las URLs de paginación
+  const paginationUrls = Array.from({ length: totalPages }, (_, i) => i + 1)
+    .map(pageNum => ({
+      url: `${siteUrl}/blog${pageNum === 1 ? '' : `?page=${pageNum}`}`,
+      priority: pageNum === 1 ? '0.9' : '0.7',
+      changefreq: 'weekly'
+    }));
+
+  // Genera todas las URLs
   const urls = [
-    // URL base del sitio
-    `${siteUrl}/`,
-    // URLs de los posts del blog
-    ...slugs.map((slug) => `${siteUrl}/blog/${slug}`)
+    // Homepage
+    {
+      url: `${siteUrl}/`,
+      priority: '1.0',
+      changefreq: 'weekly'
+    },
+    // URLs de paginación
+    ...paginationUrls,
+    // URLs de los posts individuales
+    ...slugs.map(slug => ({
+      url: `${siteUrl}/blog/${slug}`,
+      priority: '0.7',
+      changefreq: 'monthly'
+    }))
   ];
 
   // Plantilla XML para el sitemap
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${urls
-      .map((url) => {
+      .map(({ url, priority, changefreq }) => {
         return `
       <url>
         <loc>${url}</loc>
         <lastmod>${new Date().toISOString()}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <changefreq>${changefreq}</changefreq>
+        <priority>${priority}</priority>
       </url>
     `;
       })
