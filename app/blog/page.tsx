@@ -28,13 +28,14 @@ export const metadata: Metadata = {
   },
 };
 
-interface Props {
-  searchParams: { page?: string };
-}
-
-export default async function BlogPage({ searchParams }: Props) {
+export default async function BlogPage({ 
+  searchParams 
+}: { 
+  searchParams: { page?: string | undefined } 
+}) {
   // Asegurarse de que searchParams se resuelva correctamente
-  const currentPage = parseInt(searchParams?.page || "1", 10);
+  const page = await searchParams;
+  const currentPage = parseInt(page?.page || "1", 10);
   const allPosts = await getAllPosts();
 
   const totalPosts = allPosts.length;
