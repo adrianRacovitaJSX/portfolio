@@ -33,7 +33,8 @@ interface Props {
 }
 
 export default async function BlogPage({ searchParams }: Props) {
-  const currentPage = Number(searchParams.page) || 1;
+  // Asegurarse de que searchParams se resuelva correctamente
+  const currentPage = parseInt(searchParams?.page || "1", 10);
   const allPosts = await getAllPosts();
 
   const totalPosts = allPosts.length;
