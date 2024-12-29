@@ -49,7 +49,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div
-      className="w-full bg-white dark:bg-black font-sans md:px-10 -mt-20"
+      className="w-full bg-white dark:bg-black font-sans md:px-10 mt-0"
       ref={containerRef}
     >
       <div ref={ref} className="relative max-w-7xl mx-auto">
@@ -74,8 +74,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             <div
               key={index}
               ref={refs[index]}
-              className={`flex justify-start pt-8 md:pt-28 md:gap-10 ${
-                index === data.length - 1 ? 'md:pb-32 pb-20' : ''
+              className={`flex justify-start pt-8 md:pt-20 lg:pt-24 md:gap-10 ${
+                index === data.length - 1 ? 'md:pb-24 lg:pb-32 pb-20' : ''
               }`}
             >
               <div className="sticky flex flex-col md:flex-row z-40 items-center top-28 self-start max-w-xs lg:max-w-sm md:w-full">

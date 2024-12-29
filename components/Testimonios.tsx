@@ -101,15 +101,15 @@ const Testimonios = () => {
   ReviewCard.displayName = 'ReviewCard';
 
   return (
-    <div className="dark:bg-black bg-white pt-0 md:pt-24" id="testimonios">
+    <div className="dark:bg-black bg-white pt-20 pb-24 md:pb-32 lg:pb-28" id="testimonios">
       <div className="h-[12rem] flex items-center justify-center relative z-50">
         <h2 className="absolute text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100 z-10">
           TESTIMONIOS
         </h2>
         <TextHoverEffect text="TESTIMONIOS" />
       </div>
-      <div className="-mt-16 pb-24">
-        <div className="relative flex h-auto pt-24 w-full flex-col items-center justify-center overflow-hidden rounded-lg dark:bg-black z-0">
+      <div className="pt-8">
+        <div className="relative flex h-auto w-full flex-col items-center justify-center overflow-hidden rounded-lg dark:bg-black z-0">
           <div className="w-full">
             <Marquee pauseOnHover className="[--duration:20s]">
               {firstRow.map((review) => (

@@ -114,7 +114,7 @@ const SobreMi = () => {
   ];
 
   return (
-    <div className="dark:bg-black bg-white pt-20" id="conoceme">
+       <div className="dark:bg-black bg-white pt-20 pb-24 md:pb-32 lg:pb-28" id="conoceme">
       <div className="h-[12rem] flex items-center justify-center relative">
         <h2 className="absolute text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100 z-10">
           CONÓCEME
@@ -122,7 +122,7 @@ const SobreMi = () => {
         <TextHoverEffect text="CONÓCEME" />
       </div>
       <div className="w-full px-6 md:w-full">
-        <BentoGrid className=" mx-auto md:auto-rows-[20rem]">
+        <BentoGrid className="mx-auto md:auto-rows-[20rem]">
           {items.map((item, i) => (
             <BentoGridItem
               key={i}

@@ -128,7 +128,7 @@ const Proyectos = () => {
   ];
 
   return (
-    <div className="dark:bg-black bg-white md:pt-32 pt-20" id="proyectos"> 
+    <div className="dark:bg-black bg-white pt-20 pb-24 md:pb-32 lg:pb-28" id="proyectos">
       <div className="h-[12rem] flex items-center justify-center relative">
         <h2 className="absolute text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100 z-10">
           PROYECTOS

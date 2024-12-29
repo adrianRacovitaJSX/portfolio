@@ -221,8 +221,8 @@ const Experiencia = () => {
   ];
 
   return (
-    <div className="dark:bg-black bg-white md:-mt-96 -mt-36" id="experiencia">
-      <div className="h-[12rem] flex items-center justify-center relative mb-10 md:mb-0">
+    <div className="dark:bg-black bg-white pt-20 pb-24 md:pb-32 lg:pb-28" id="experiencia">
+      <div className="h-[12rem] flex items-center justify-center relative mb-10">
         <h2 className="absolute text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-100 z-10">
           EXPERIENCIA
         </h2>

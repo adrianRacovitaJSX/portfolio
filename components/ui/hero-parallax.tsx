@@ -45,28 +45,30 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
   );
 
   const calculateDragLimit = (numItems: number) => {
-    if (typeof window === 'undefined') return 0;
-    
+    if (typeof window === "undefined") return 0;
+
     const cardWidth = window.innerWidth < 768 ? 280 : 400;
     const gapWidth = window.innerWidth < 768 ? 32 : 48;
     const containerWidth = window.innerWidth;
-    const totalWidth = (cardWidth * numItems) + (gapWidth * (numItems - 1));
+    const totalWidth = cardWidth * numItems + gapWidth * (numItems - 1);
     const dragLimit = Math.max(0, totalWidth - containerWidth);
-    
-    // Ajuste para móviles: Limitar el arrastre en dispositivos pequeños
+
     const extraMargin = window.innerWidth < 768 ? 200 : 100;
     return -(dragLimit + extraMargin);
   };
 
   return (
-    <div ref={ref} className="h-[130vh] md:h-[200vh] py-5 md:py-10 overflow-hidden antialiased relative">
+    <div
+      ref={ref}
+      className="h-[90vh] md:h-[120vh] lg:h-[100vh] py-6 md:py-8 lg:py-6 overflow-hidden antialiased relative"
+    >
       <div className="max-w-[100vw] px-4 mx-auto">
         <motion.div
           className="flex flex-row-reverse mb-8 md:mb-20 cursor-grab active:cursor-grabbing"
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(firstRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100
+            right: window?.innerWidth < 768 ? 200 : 100,
           }}
           dragElastic={0.1}
         >
@@ -86,7 +88,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(secondRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100
+            right: window?.innerWidth < 768 ? 200 : 100,
           }}
           dragElastic={0.1}
         >
@@ -106,7 +108,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(thirdRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100
+            right: window?.innerWidth < 768 ? 200 : 100,
           }}
           dragElastic={0.1}
         >

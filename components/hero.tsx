@@ -19,11 +19,12 @@ const Hero = () => {
           <div className="z-10 flex items-center justify-center w-full mb-3 md:mb-6">
             <div
               className={cn(
-                "w-fit group rounded-full border border-black/5 bg-neutral-100 text-sm md:text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800"
+                "w-fit group rounded-full border border-black/5 bg-neutral-100 text-sm text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800",
+                "md:text-base [@media(height<=768px)]:text-sm"
               )}
             >
               <AnimatedShinyText className="inline-flex items-center justify-center px-3 md:px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-                <span className="whitespace-normal text-center md:whitespace-nowrap text-sm md:text-base">
+                <span className="whitespace-normal text-center md:whitespace-nowrap text-sm md:text-base [@media(height<=768px)]:text-sm">
                   Construyendo UI/UX mágicos <br className="md:hidden" /> con
                   Next.js y TailwindCSS
                 </span>
@@ -31,12 +32,12 @@ const Hero = () => {
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-8xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-950 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 px-2 md:px-0 mb-4 md:mb-6">
+          <h1 className="text-4xl md:text-8xl [@media(height<=768px)]:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-950 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50 px-2 md:px-0 mb-4 md:mb-6">
             Transformando Conceptos en Experiencias de Usuario Innovadoras.
           </h1>
 
           <div className="flex items-center justify-center px-4 md:px-0 mb-5 md:mb-8">
-            <p className="text-center antialiased text-base md:text-2xl max-w-[300px] md:max-w-none">
+            <p className="text-center antialiased text-base md:text-2xl [@media(height<=768px)]:text-xl max-w-[300px] md:max-w-none">
               <span className="md:hidden">
                 Desarrollador <b>full-stack</b> especializado en React.JS, Next.JS y
                 TailwindCSS
@@ -53,15 +54,15 @@ const Hero = () => {
 
           <div className="flex justify-center mt-10 gap-5">
             <a href="#contacto">
-            <button className="flex gap-1 antialiased justify-center items-center h-auto px-7 py-2 bg-black text-white text-sm rounded-md font-semibold hover:bg-black/[0.8] hover:shadow-lg dark:border-white dark:border">
-            <Mail size={15}/> Contacto
-            </button>
+              <button className="flex gap-1 antialiased justify-center items-center h-auto px-7 py-2 bg-black text-white text-sm rounded-md font-semibold hover:bg-black/[0.8] hover:shadow-lg dark:border-white dark:border">
+                <Mail size={15}/> Contacto
+              </button>
             </a>
             <button className="flex gap-1 antialiased justify-center items-center h-auto px-7 py-2 bg-white text-black border-black border text-sm rounded-md font-semibold hover:bg-zinc/[0.8] hover:shadow-lg">
-            <FileCode2 size={17} /> 
-            <a href="/CV.pdf" target="_blank">
-            Currículum
-            </a>
+              <FileCode2 size={17} /> 
+              <a href="/CV.pdf" target="_blank">
+                Currículum
+              </a>
             </button>
           </div>
         </div>
