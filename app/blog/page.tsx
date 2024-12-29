@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 export default async function BlogPage({ 
   searchParams 
 }: { 
-  searchParams: { page?: string | undefined } 
+  searchParams: Promise<{ page?: string | undefined }> 
 }) {
   // Asegurarse de que searchParams se resuelva correctamente
   const page = await searchParams;
