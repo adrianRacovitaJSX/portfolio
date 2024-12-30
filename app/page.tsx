@@ -1,4 +1,5 @@
 "use client"
+import SnowEffect from '@/components/ui/SnowController';
 import dynamic from 'next/dynamic';
 
 const Hero = dynamic(() => import("@/components/hero"), { ssr: false });

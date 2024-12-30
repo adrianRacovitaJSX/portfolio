@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster"
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "@/components/ui/toaster";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
+import SnowProvider from "@/components/ui/SnowProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,12 +20,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aracovita.dev'),
+  metadataBase: new URL("https://aracovita.dev"),
   title: {
     default: "Adrián Racovita | Desarrollador Full Stack",
-    template: "%s | Adrián Racovita"
+    template: "%s | Adrián Racovita",
   },
-  description: "Portfolio profesional de Adrián Racovita. Desarrollador Full Stack especializado en Next.js, React y tecnologías web modernas.",
+  description:
+    "Portfolio profesional de Adrián Racovita. Desarrollador Full Stack especializado en Next.js, React y tecnologías web modernas.",
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -32,12 +34,14 @@ export const metadata: Metadata = {
     siteName: "Portfolio de Adrián Racovita",
     title: "Adrián Racovita | Desarrollador Full Stack",
     description: "Portfolio profesional de Adrián Racovita",
-    images: [{
-      url: '/og-image.jpg',
-      width: 1200,
-      height: 630,
-      alt: 'Adrián Racovita - Desarrollador Full Stack'
-    }]
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Adrián Racovita - Desarrollador Full Stack",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -45,11 +49,11 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    }
-  }
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -63,8 +67,8 @@ export default function RootLayout({
         <link rel="canonical" href="https://aracovita.dev" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <head>
-        <Script id="hotjar-tracking" strategy="afterInteractive">
-          {`
+          <Script id="hotjar-tracking" strategy="afterInteractive">
+            {`
             (function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
               h._hjSettings={hjid:5253003,hjsv:6};
@@ -74,8 +78,8 @@ export default function RootLayout({
               a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
           `}
-        </Script>
-      </head>
+          </Script>
+        </head>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
@@ -86,7 +90,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SnowProvider>{children}</SnowProvider>
         </ThemeProvider>
         <Toaster />
         <GoogleAnalytics gaId="G-SZB5P03KES" />
