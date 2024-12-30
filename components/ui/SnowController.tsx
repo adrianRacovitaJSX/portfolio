@@ -55,13 +55,24 @@ const SnowContainer = ({ snowflakes }: { snowflakes: SnowflakeType[] }) => (
 
 const SnowController = () => {
   const [snowflakes, setSnowflakes] = useState<SnowflakeType[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
   const { isSnowing } = useSnow();
+
+  // Detectar móvil
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const createSnowflake = (): SnowflakeType => {
     const id = Math.random();
     const left = Math.random() * 100;
     const animationDuration = 7 + Math.random() * 13;
-    const size = 0.5 + Math.random() * 1;
+    const size = isMobile
+      ? 0.15 + Math.random() * 0.15  // Entre 0.15 y 0.3 en móvil
+      : 0.5 + Math.random() * 1;     // Entre 0.5 y 1.5 en desktop
 
     return {
       id,
@@ -81,24 +92,25 @@ const SnowController = () => {
 
     const interval = setInterval(() => {
       setSnowflakes(prev => {
-        if (prev.length >= 50) {
+        const maxCopos = isMobile ? 10 : 50; // Menos copos en móvil
+        if (prev.length >= maxCopos) {
           const [, ...rest] = prev;
           return [...rest, createSnowflake()];
         }
         return [...prev, createSnowflake()];
       });
-    }, 200);
+    }, isMobile ? 400 : 200); // Más tiempo entre copos en móvil
 
     return () => clearInterval(interval);
-  }, [isSnowing]);
+  }, [isSnowing, isMobile]);
 
   useEffect(() => {
     const cleanup = setInterval(() => {
-      setSnowflakes(prev => prev.slice(-30));
+      setSnowflakes(prev => prev.slice(-(isMobile ? 8 : 30))); // Menos copos mantenidos en móvil
     }, 10000);
 
     return () => clearInterval(cleanup);
-  }, []);
+  }, [isMobile]);
 
   return (
     <>

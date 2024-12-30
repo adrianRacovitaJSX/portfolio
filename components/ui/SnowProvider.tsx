@@ -15,7 +15,7 @@ export const SnowContext = createContext<SnowContextType>({
 export const useSnow = () => useContext(SnowContext);
 
 const SnowProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isSnowing, setIsSnowing] = useState(true);
+  const [isSnowing, setIsSnowing] = useState(false);
 
   const toggleSnow = () => setIsSnowing(prev => !prev);
 
