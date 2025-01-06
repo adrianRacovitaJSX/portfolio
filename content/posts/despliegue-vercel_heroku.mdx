@@ -1,0 +1,131 @@
+---
+title: Despliegue de una aplicación Full Stack en Vercel y Heroku
+date: '2025-01-06'
+excerpt: Aprende a desplegar tanto el frontend (React/Next.js) como el backend (Node.js/Express) de una aplicación Full Stack utilizando Vercel y Heroku.
+image: "/deployment.png"
+author: Adrian Racovita
+keywords:
+  - Full Stack
+  - Despliegue
+  - Vercel
+  - Heroku
+  - Node.js
+  - Express
+  - React.js
+category: Desarrollo Full Stack
+lastModified: '2025-01-06'
+---
+
+# Despliegue de una aplicación Full Stack en Vercel y Heroku
+
+En este tutorial, aprenderás a desplegar una aplicación Full Stack utilizando **Vercel** para el frontend y **Heroku** para el backend. Desplegar una aplicación de este tipo puede parecer complicado al principio, pero con los pasos correctos, verás que es un proceso sencillo. Vamos a ver cómo hacerlo.
+
+## Requisitos previos
+
+Antes de comenzar, asegúrate de tener:
+
+- Una aplicación Full Stack creada con **React/Next.js** (frontend) y **Node.js/Express** (backend).
+- Cuentas en [Vercel](https://vercel.com/) y [Heroku](https://heroku.com/).
+- Git instalado en tu máquina.
+
+## Paso 1: Desplegar el frontend en Vercel
+
+Vercel es una plataforma ideal para desplegar aplicaciones frontend, especialmente las construidas con Next.js.
+
+### 1.1. Crear un proyecto en Vercel
+
+1. Ve a [Vercel](https://vercel.com/) y regístrate (o inicia sesión).
+2. Haz clic en "New Project" y selecciona tu repositorio de GitHub donde tienes el código de tu aplicación frontend (Next.js).
+3. Vercel detectará automáticamente el framework y configurará el proyecto.
+4. Haz clic en "Deploy". Tu aplicación estará en línea en pocos minutos.
+
+### 1.2. Configuración de Vercel
+
+Una vez desplegado, puedes personalizar la configuración en el dashboard de Vercel. Asegúrate de agregar las variables de entorno necesarias si tu aplicación depende de ellas.
+
+## Paso 2: Desplegar el backend en Heroku
+
+Heroku es una plataforma perfecta para desplegar aplicaciones backend como las hechas con Node.js y Express.
+
+### 2.1. Crear un proyecto en Heroku
+
+1. Ve a [Heroku](https://heroku.com/) y regístrate (o inicia sesión).
+2. Instala la [CLI de Heroku](https://devcenter.heroku.com/articles/heroku-cli) si aún no lo has hecho.
+3. En la terminal, navega hasta la carpeta de tu proyecto backend y haz login en Heroku:
+   ```bash
+   heroku login
+   ```
+4. Crea una nueva aplicación en Heroku:
+   ```bash
+   heroku create nombre-de-tu-app
+   ```
+
+### 2.2. Configurar el archivo `Procfile`
+
+Heroku necesita un archivo llamado `Procfile` para saber cómo ejecutar tu aplicación. Crea un archivo llamado `Procfile` en la raíz de tu proyecto backend con el siguiente contenido:
+
+```text
+web: node index.js
+```
+
+Este archivo le indica a Heroku que debe iniciar el servidor con el comando `node index.js`.
+
+### 2.3. Desplegar el backend
+
+1. Inicializa un repositorio Git si aún no lo has hecho:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   ```
+2. Conecta tu repositorio local con Heroku:
+   ```bash
+   heroku git:remote -a nombre-de-tu-app
+   ```
+3. Realiza un push a Heroku para desplegar tu aplicación:
+   ```bash
+   git push heroku master
+   ```
+
+### 2.4. Variables de entorno en Heroku
+
+Si tu aplicación usa variables de entorno (como claves API o credenciales de base de datos), configúralas en el dashboard de Heroku o usando la CLI:
+
+```bash
+heroku config:set NOMBRE_VARIABLE=valor
+```
+
+## Paso 3: Conectar el frontend con el backend
+
+Una vez que ambos, el frontend en Vercel y el backend en Heroku, estén desplegados, asegúrate de que el frontend pueda hacer peticiones HTTP a la API de tu backend.
+
+### 3.1. Actualizar las URLs de la API
+
+En tu frontend (Next.js), actualiza las URLs de las peticiones API para que apunten a la URL de tu backend en Heroku. Esto generalmente se hace a través de variables de entorno.
+
+```js
+const API_URL = process.env.API_URL || 'https://nombre-de-tu-app.herokuapp.com';
+```
+
+### 3.2. Probar la integración
+
+Realiza una prueba enviando una solicitud desde el frontend para asegurarte de que todo esté funcionando correctamente.
+
+## Paso 4: Consejos y Buenas Prácticas
+
+1. **Automatización**: Considera integrar CI/CD (como GitHub Actions) para automatizar el proceso de despliegue cada vez que hagas cambios en tu código.
+2. **Monitoreo**: Usa herramientas como [Loggly](https://www.loggly.com/) o [Papertrail](https://papertrailapp.com/) para monitorear logs y asegurarte de que todo funcione correctamente.
+3. **Seguridad**: Asegúrate de que tu aplicación esté protegida, utilizando HTTPS y configurando correctamente las variables de entorno.
+
+## Paso 5: Mejoras adicionales
+
+Si tu aplicación crece, es posible que necesites implementar una base de datos y manejar el escalado de tu backend. Algunas recomendaciones adicionales son:
+
+1. **Base de Datos**: Puedes usar [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) o [Heroku Postgres](https://www.heroku.com/postgres) para configurar bases de datos escalables.
+2. **Escalabilidad**: Si tu aplicación crece mucho, evalúa la opción de escalar tus servidores en Heroku, añadiendo más "dynos" para manejar el tráfico.
+
+## Conclusión
+
+El despliegue de una aplicación Full Stack utilizando Vercel y Heroku es sencillo y efectivo. Vercel te permite desplegar tu frontend de manera rápida y escalable, mientras que Heroku es ideal para el backend. Siguiendo estos pasos, tendrás tu aplicación en producción en poco tiempo.
+
+💡 ¡Ahora es tu turno! Despliega tu aplicación y comparte tu experiencia. ¿Tienes algún consejo adicional sobre el despliegue? ¡Déjalo en los comentarios!
