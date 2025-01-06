@@ -25,6 +25,14 @@ html {
   }
 }
 
+@media (max-width: 375px) {
+  .small-screen-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    padding: 0 0.5rem;
+  }
+}
+
 .santa-hat-active {
   animation: santaHat 0.6s ease-out forwards;
 }

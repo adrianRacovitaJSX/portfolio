@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -34,14 +34,6 @@ const Footer = () => {
     "Pon tu correo para estar al tanto de todo.",
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -57,7 +49,6 @@ const Footer = () => {
 
       if (response.ok) {
         toast({
-          // Movemos el icono a la descripción en su lugar
           description: (
             <div className="flex flex-col gap-1">
               <span className="flex items-center gap-2 font-semibold">
@@ -110,8 +101,8 @@ const Footer = () => {
         interactive={false}
       />
 
-      <div className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-8 py-8 sm:py-16">
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8">
+        <div className="max-w-7xl mx-auto py-8 sm:py-16">
           <div className="grid gap-8 sm:gap-16 md:grid-cols-2">
             {/* Información de Contacto */}
             <div className="space-y-6 sm:space-y-8 w-full">
@@ -120,7 +111,10 @@ const Footer = () => {
                   ¡Suscríbete a mi newsletter!
                 </h3>
                 <div className="w-full max-w-full">
-                <PlaceholdersAndVanishInput placeholders={placeholders} />
+                <PlaceholdersAndVanishInput 
+                  placeholders={placeholders} 
+                  className="max-w-[calc(100vw-2rem)]"
+                />
                 </div>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
@@ -171,7 +165,7 @@ const Footer = () => {
               </h3>
 
               <form className="space-y-4 w-full" onSubmit={handleSubmit}>
-                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 w-full">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
                   <Input
                     placeholder="Nombre *"
                     value={formData.name}
@@ -179,7 +173,7 @@ const Footer = () => {
                       setFormData((prev) => ({ ...prev, name: e.target.value }))
                     }
                     required
-                    className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                    className="w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 max-w-[calc(100vw-2rem)]"
                   />
                   <Input
                     placeholder="Email *"
@@ -192,7 +186,7 @@ const Footer = () => {
                       }))
                     }
                     required
-                    className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                    className="w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 max-w-[calc(100vw-2rem)]"
                   />
                 </div>
                 <Input
@@ -204,7 +198,7 @@ const Footer = () => {
                       company: e.target.value,
                     }))
                   }
-                  className="w-full max-w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 max-w-[calc(100vw-2rem)]"
                 />
                 <Textarea
                   placeholder="Mensaje *"
@@ -216,12 +210,12 @@ const Footer = () => {
                     }))
                   }
                   required
-                  className="w-full max-w-full min-h-[120px] bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="w-full min-h-[120px] bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 max-w-[calc(100vw-2rem)]"
                 />
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white"
+                  className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white max-w-[calc(100vw-2rem)]"
                 >
                   {isLoading ? (
                     <>Enviando...</>

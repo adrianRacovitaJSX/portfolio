@@ -12,14 +12,16 @@ const Footer = dynamic(() => import("@/components/footer"), { ssr: false });
 
 export default function Home() {
   return (
-    <main className="w-full">
-      <Header />
-      <Hero />
-      <SobreMi />
-      <Proyectos />
-      <Experiencia />
-      <Testimonios />
+    <div className="min-h-screen flex flex-col">
+      <Header className="sticky top-0 z-50" />
+      <main className="flex-grow w-full overflow-x-hidden">
+        <Hero />
+        <SobreMi />
+        <Proyectos />
+        <Experiencia />
+        <Testimonios />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

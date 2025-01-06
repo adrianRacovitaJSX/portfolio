@@ -8,8 +8,10 @@ import { Check, AlertCircle } from "lucide-react";
 
 export function PlaceholdersAndVanishInput({
   placeholders,
+  className,
 }: {
   placeholders: string[];
+  className?: string;
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [email, setEmail] = useState("");
@@ -234,7 +236,8 @@ export function PlaceholdersAndVanishInput({
     <form
       className={cn(
         "w-[25rem] relative max-w-xl bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
-        value && "bg-gray-50"
+        value && "bg-gray-50",
+        className
       )}
       onSubmit={(e) => {
         e.preventDefault();
