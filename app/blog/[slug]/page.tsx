@@ -129,7 +129,7 @@ export default async function PostPage({ params }: any) {
               <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-xl overflow-hidden">
                 <Image
                   src={post.metadata.image}
-                  alt={post.metadata.title}
+                  alt={`Imagen representativa del artículo ${post.metadata.title} en la categoría ${post.metadata.category}`}
                   fill
                   className="object-cover"
                   priority
