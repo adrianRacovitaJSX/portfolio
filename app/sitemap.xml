@@ -3,91 +3,105 @@
     
       <url>
         <loc>https://aracovita.dev/</loc>
-        <lastmod>2025-01-15T11:39:29.484Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog?page=2</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+      </url>
+    
+      <url>
+        <loc>https://aracovita.dev/blog?page=3</loc>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/como-crear-una-api-rest-con-nextjs-y-typescript</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/como-empezar-con-react-en-2025</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
+    
+      <url>
+        <loc>https://aracovita.dev/blog/comparativa-react-vue-svelte-angular</loc>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/comparativa_Server_vs_client_components_nextjs</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/crear-un-blog-con-nextjs</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/despliegue-vercel_heroku</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/errores-comunes-front-end</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/guia-completa-de-rutas-en-nextjs-14</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/la-evolucion-de-los-frameworks-css-de-bootstrap-a-tailwindcss</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/mejores-practicas-para-la-estructura-de-un-proyecto-full-stack-con-nextjs-y-typescript</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
     
       <url>
         <loc>https://aracovita.dev/blog/wpav-revolucionando-la-seguridad-de-wordpress-con-ia</loc>
-        <lastmod>2025-01-15T11:39:29.485Z</lastmod>
+        <lastmod>2025-01-17T13:37:34.255Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>

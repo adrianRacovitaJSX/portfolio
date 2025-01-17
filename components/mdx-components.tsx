@@ -3,9 +3,58 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { CodeBlock } from './ui/code-block'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface HeadingProps {
   children: ReactNode;
+}
+
+// Añadimos la interfaz para la tabla personalizada
+interface Column {
+  key: string;
+  header: string;
+}
+
+interface CustomTableProps {
+  columns: Column[];
+  data: Record<string, string>[];
+}
+
+// Añadimos el componente CustomTable
+function CustomTable({ columns, data }: CustomTableProps) {
+  return (
+    <div className="my-8 overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {columns.map((column) => (
+              <TableHead key={column.key}>
+                {column.header}
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((row, rowIndex) => (
+            <TableRow key={`row-${rowIndex}-${row.feature}`}>
+              {columns.map((column) => (
+                <TableCell key={`cell-${rowIndex}-${column.key}`}>
+                  {row[column.key]}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -58,6 +107,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <div className="my-6">
         <CodeBlock {...props} />
       </div>
+    ),
+    // Añadimos el CustomTable a los componentes
+    CustomTable,
+    // Mantenemos los componentes de tabla originales para compatibilidad
+    table: ({ children }: { children: ReactNode }) => (
+      <div className="my-6">
+        <Table>{children}</Table>
+      </div>
+    ),
+    thead: ({ children }: { children: ReactNode }) => (
+      <TableHeader>{children}</TableHeader>
+    ),
+    tbody: ({ children }: { children: ReactNode }) => (
+      <TableBody>{children}</TableBody>
+    ),
+    tr: ({ children }: { children: ReactNode }) => (
+      <TableRow>{children}</TableRow>
+    ),
+    th: ({ children }: { children: ReactNode }) => (
+      <TableHead>{children}</TableHead>
+    ),
+    td: ({ children }: { children: ReactNode }) => (
+      <TableCell>{children}</TableCell>
     ),
     ...components,
   }
