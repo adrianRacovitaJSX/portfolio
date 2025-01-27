@@ -1,4 +1,3 @@
-// emails/ContactEmail.tsx
 import {
     Html,
     Body,
@@ -9,6 +8,8 @@ import {
     Hr,
     Section,
   } from '@react-email/components';
+  import { format } from 'date-fns';
+  import { es } from 'date-fns/locale';
   
   interface ContactEmailProps {
     name: string;
@@ -16,6 +17,8 @@ import {
     company?: string;
     projectType: string;
     message: string;
+    preferredDate?: Date | null;
+    preferredTime?: string;
   }
   
   const Footer = () => (
@@ -51,7 +54,11 @@ import {
     company,
     projectType,
     message,
+    preferredDate,
+    preferredTime,
   }: ContactEmailProps) {
+    const hasPreferredDateTime = preferredDate && preferredTime;
+    
     return (
       <Html>
         <Tailwind>
@@ -79,6 +86,15 @@ import {
   
                   <Text className="font-semibold text-gray-800 mb-1">Tipo de proyecto:</Text>
                   <Text className="text-gray-700 mb-4">{getProjectTypeLabel(projectType)}</Text>
+  
+                  {hasPreferredDateTime && (
+                    <>
+                      <Text className="font-semibold text-gray-800 mb-1">Preferencia de contacto:</Text>
+                      <Text className="text-gray-700 mb-4">
+                        {format(preferredDate, "PPP", { locale: es })} a las {preferredTime}h
+                      </Text>
+                    </>
+                  )}
   
                   <Text className="font-semibold text-gray-800 mb-1">Mensaje:</Text>
                   <Text className="text-gray-700 whitespace-pre-wrap bg-white p-3 rounded border border-gray-200">
