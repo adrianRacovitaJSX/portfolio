@@ -1,15 +1,7 @@
-// app/contacto/page.tsx
-import { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { ContactInfo } from "@/components/ContactInfo";
 import Header from "@/components/header";
-
-export const metadata: Metadata = {
-  title: "Desarrollo a Medida | Adrián Racovita - Desarrollo Web y Aplicaciones",
-  description:
-    "Transforma tu visión en realidad digital. Desarrollo web y aplicaciones móviles de alto impacto para hacer crecer tu negocio.",
-};
 
 export default function Page() {
   return (
