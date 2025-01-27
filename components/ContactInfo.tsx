@@ -12,7 +12,7 @@ export const ContactInfo = () => {
             <div className="flex items-center gap-2 justify-center">
               <Check className="h-5 w-5 text-emerald-500 flex-shrink-0" />
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                +5 años de experiencia en desarrollo
+                +4 años de experiencia en desarrollo
               </p>
             </div>
             <div className="flex items-center gap-2 justify-center">
