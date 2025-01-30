@@ -25,7 +25,7 @@ const Hero = () => {
             >
               <AnimatedShinyText className="inline-flex items-center justify-center px-3 md:px-4 py-1.5 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
                 <span className="whitespace-normal text-center md:whitespace-nowrap text-xs md:text-base">
-                  Construyendo UI/UX mágicos <br className="md:hidden" /> con
+                  🪄 Construyendo UI/UX mágicos <br className="md:hidden" /> con
                   Next.js y TailwindCSS
                 </span>
               </AnimatedShinyText>
