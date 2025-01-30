@@ -14,6 +14,14 @@ const Proyectos = () => {
       technologies: ["nextjs", "typescript", "tailwind", "nodejs"],
     },
     {
+      title: "WPAV: WordPress Antivirus",
+      link: "https://wpav.es",
+      thumbnail: "/proyectos/captWpav.png",
+      description:
+        "WPAV es la solución definitiva para proteger tu sitio WordPress contra malware y ciberataques. Detecta, elimina amenazas con IA y gestiona la seguridad de múltiples webs desde una única plataforma.",
+      technologies: ["nextjs", "typescript", "tailwind", "nodejs"],
+    },
+    {
       title: "Simplify Docs",
       link: "https://docs.simplifycrm.es/",
       thumbnail: "/proyectos/captDocsSimplify.png",
