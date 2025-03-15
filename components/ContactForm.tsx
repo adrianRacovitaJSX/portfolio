@@ -16,6 +16,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { AlertCircle, CalendarIcon, Check, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation"; // Importamos useRouter para la redirección
 import {
   Select,
   SelectContent,
@@ -45,6 +46,7 @@ const timeSlots = [
 
 export const ContactForm = () => {
   const { toast } = useToast();
+  const router = useRouter(); // Inicializamos el router
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -70,6 +72,7 @@ export const ContactForm = () => {
       });
 
       if (response.ok) {
+        // Toast opcional - puedes mantenerlo o quitarlo ya que redirigiremos
         toast({
           description: (
             <div className="flex flex-col gap-1">
@@ -78,20 +81,14 @@ export const ContactForm = () => {
                 ¡Mensaje recibido!
               </span>
               <span>
-                Me pondré en contacto contigo en las próximas 24 horas.
+                Te responderé en las próximas 24 horas.
               </span>
             </div>
           ),
         });
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          projectType: "",
-          message: "",
-          preferredDate: null,
-          preferredTime: "",
-        });
+        
+        // Redirigimos a la página de gracias
+        router.push("/gracias");
       } else {
         throw new Error("Error al enviar el mensaje");
       }
