@@ -1,0 +1,188 @@
+- .DS_Store
+- .env
+- .gitignore
+- README.md
+- app
+  - api
+    - send-contact
+      - route.ts
+    - send-email
+      - route.ts
+    - subscribe
+      - route.ts
+  - blog
+    - [slug]
+      - page.tsx
+    - page.tsx
+  - desarrollo-web-y-apps-a-medida
+    - layout.tsx
+    - page.tsx
+  - favicon.ico
+  - globals.css
+  - layout.tsx
+  - page.tsx
+  - robots.txt
+  - sitemap.xml
+- bun.lockb
+- components
+  - BlogSidebar.tsx
+  - Comments.tsx
+  - ComparisonTable.tsx
+  - ContactForm.tsx
+  - ContactInfo.tsx
+  - Experiencia.tsx
+  - Proyectos.tsx
+  - ReadingProgress.tsx
+  - ScrollToTop.tsx
+  - ServicesGrid.tsx
+  - ShareButtons.tsx
+  - TableOfContents.tsx
+  - Testimonios.tsx
+  - apple-cards-carousel.tsx
+  - footer.tsx
+  - header.tsx
+  - hero.tsx
+  - mdx-components.tsx
+  - mode-toggle.tsx
+  - sobreMi.tsx
+  - theme-provider.tsx
+  - ui
+    - SnowController.tsx
+    - SnowProvider.tsx
+    - Spotlight.tsx
+    - animated-grid-pattern.tsx
+    - animated-shiny-text.tsx
+    - animated-testimonials.tsx
+    - background-gradient-animation.tsx
+    - bento-grid.tsx
+    - border-beam.tsx
+    - button.tsx
+    - calendar.tsx
+    - card.tsx
+    - code-block.tsx
+    - compare.tsx
+    - dropdown-menu.tsx
+    - evervault-card.tsx
+    - globe.tsx
+    - hero-parallax.tsx
+    - icon-cloud.tsx
+    - input.tsx
+    - marquee.tsx
+    - placeholders-and-vanish-input.tsx
+    - popover.tsx
+    - select.tsx
+    - sparkles.tsx
+    - table.tsx
+    - text-hover-effect.tsx
+    - textarea.tsx
+    - timeline.tsx
+    - toast.tsx
+    - toaster.tsx
+    - tracing-beam.tsx
+- components.json
+- content
+  - posts
+    - como-crear-una-api-rest-con-nextjs-y-typescript.mdx
+    - como-empezar-con-react-en-2025.mdx
+    - como_empezar_programacion_lenguajes_herramientas_y_consejos.mdx
+    - comparativa-react-vue-svelte-angular.mdx
+    - comparativa-vscode-cursor.mdx
+    - comparativa_Server_vs_client_components_nextjs.mdx
+    - crear-un-blog-con-nextjs.mdx
+    - despliegue-vercel_heroku.mdx
+    - errores-comunes-front-end.mdx
+    - guia-completa-de-rutas-en-nextjs-14.mdx
+    - la-evolucion-de-los-frameworks-css-de-bootstrap-a-tailwindcss.mdx
+    - lanzamiento-wpav-mi-startup.mdx
+    - mejores-practicas-para-la-estructura-de-un-proyecto-full-stack-con-nextjs-y-typescript.mdx
+    - wpav-revolucionando-la-seguridad-de-wordpress-con-ia.mdx
+- custom.css
+- emails
+  - ContactConfirmationEmail.tsx
+  - ContactEmail.tsx
+- generate-sitemap.js
+- hooks
+  - use-outside-click.ts
+  - use-toast.ts
+- lib
+  - utils.ts
+- next-env.d.ts
+- next.config.ts
+- package-lock.json
+- package.json
+- postcss.config.mjs
+- public
+  - .DS_Store
+  - CV.pdf
+  - atleticry.avif
+  - capt-app.png
+  - comparison.png
+  - crearApi.png
+  - css.jpg
+  - cursorp.png
+  - deployment.png
+  - fotoCode.png
+  - fotoPersonal.png
+  - getting-started-programming.jpg
+  - gorro.png
+  - icons
+    - aws.svg
+    - css.svg
+    - docker.svg
+    - express.svg
+    - html.svg
+    - javascript.svg
+    - nextjs.svg
+    - nodejs.svg
+    - php.svg
+    - reactjs.svg
+    - tailwind.svg
+    - typescript.svg
+    - woo.svg
+    - wordpress.svg
+  - imagenYo.jpeg
+  - logo-coselharan.svg
+  - logoAranes.png
+  - logoFisio.png
+  - logoGato.png
+  - logoRosa.jpg
+  - markdown.jpg
+  - nextjs13.png
+  - og-image-desarrollo.png
+  - og-image.jpg
+  - proyectos
+    - captAranes.png
+    - captBridge.png
+    - captDocsSimplify.png
+    - captDrac.png
+    - captEnergy.png
+    - captEuros.png
+    - captFisio.png
+    - captGato.png
+    - captIFS.png
+    - captIntelliform.png
+    - captMelius.png
+    - captProactiva.png
+    - captRehatrans.png
+    - captScreen.png
+    - captSeguro.png
+    - captSimplify.png
+    - captSive.png
+    - captTaskontrol.png
+    - captUfv.png
+    - captWpav.png
+  - rayo.webp
+  - react.jpg
+  - rehatrans-logo.svg
+  - screen.png
+  - serverClient.jpg
+  - tsnext.png
+  - vsc-cursor.Default
+  - wpav-saas-cover.png
+- sitemap.xml
+- tailwind.config.ts
+- tsconfig.json
+- utils
+  - formatDate.ts
+  - mdx.ts
+  - readingTime.ts
