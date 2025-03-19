@@ -38,11 +38,11 @@ const Proyectos = () => {
       technologies: ["reactjs", "javascript", "css", "express"],
     },
     {
-      title: "Bridge App",
-      link: "https://bridge.aracovita.dev/",
-      thumbnail: "/proyectos/captBridge.png",
+      title: "Epicars",
+      link: "https://epicars.es/",
+      thumbnail: "/proyectos/captEpicars.png",
       description:
-        "Aplicación diseñada para simplificar procesos empresariales mediante la integración de datos.",
+        "Sitio web de una empresa dedicada a la venta de vehículos de segunda mano. Integración con API de coches.net para obtener los datos de los vehículos y servicio de tasación online.",
       technologies: ["nextjs", "typescript", "tailwind", "nodejs"],
     },
     {
@@ -54,11 +54,11 @@ const Proyectos = () => {
       technologies: ["wordpress", "php", "css", "html", "woo"],
     },
     {
-      title: "Instituto IFS",
-      link: "https://institutoifs.com/",
-      thumbnail: "/proyectos/captIFS.png",
+      title: "AJ Sport",
+      link: "https://ajsport.es/",
+      thumbnail: "/proyectos/captAJ.png",
       description:
-        "Sitio web del Instituto IFS, enfocado en programas educativos y actividades formativas.",
+        "Sitio web de una empresa dedicada a la reprogramación de vehículos. Con calculadora de potencia y consumo.",
       technologies: ["wordpress", "php", "css", "html", "woo"],
     },
     {

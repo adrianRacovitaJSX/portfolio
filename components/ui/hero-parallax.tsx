@@ -53,14 +53,14 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
     const totalWidth = cardWidth * numItems + gapWidth * (numItems - 1);
     const dragLimit = Math.max(0, totalWidth - containerWidth);
 
-    const extraMargin = window.innerWidth < 768 ? 200 : 100;
+    const extraMargin = window.innerWidth < 768 ? 280 : 400;
     return -(dragLimit + extraMargin);
   };
 
   return (
     <div
       ref={ref}
-      className="h-[90vh] md:h-[120vh] lg:h-[100vh] py-6 md:py-8 lg:py-6 overflow-hidden antialiased relative"
+      className="h-[90vh] md:h-[120vh] lg:h-[130vh] xl:h-[150vh] py-6 md:py-8 lg:py-6 overflow-hidden antialiased relative"
     >
       <div className="max-w-[100vw] px-4 mx-auto">
         <motion.div
@@ -68,7 +68,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(firstRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100,
+            right: 0,
           }}
           dragElastic={0.1}
         >
@@ -88,7 +88,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(secondRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100,
+            right: 0,
           }}
           dragElastic={0.1}
         >
@@ -108,7 +108,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           drag="x"
           dragConstraints={{
             left: calculateDragLimit(thirdRow.length),
-            right: window?.innerWidth < 768 ? 200 : 100,
+            right: 0,
           }}
           dragElastic={0.1}
         >
